@@ -4,8 +4,44 @@ namespace App\Model\User\UseCase\SignUp\Request;
 
 use App\Model\User\Entity\User\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Ramsey\Uuid\Uuid;
 
-class Handler
+class Hadler
+{
+    public function __construct()
+    {
+        
+    }
+
+    public function handle(Command $command): void
+    {
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Handler0
 {
     private $em;
 
@@ -23,6 +59,8 @@ class Handler
         }
 
         $user = new User(
+            Uuid::uuid4()->toString(),
+            new \DateTimeImmutable(),
             $email,
             password_hash($command->password, PASSWORD_ARGON2I)
         );

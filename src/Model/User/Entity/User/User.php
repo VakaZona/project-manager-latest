@@ -5,10 +5,25 @@ namespace App\Model\User\Entity\User;
 class User
 {
     /**
-     * email
+     * id
      *
      * @var string
      */
+    private $id;
+
+    /**
+     * date
+     *
+     * @var \DateTimeImmutable
+     */
+    private $date;
+
+    /**
+     * email
+     *
+     * @var string
+     */    
+    
     private $email;
 
     /**
@@ -18,8 +33,10 @@ class User
      */
     private $passwordHash;
 
-    public function __construct(string $email, string $hash)
+    public function __construct(string $id, \DateTimeImmutable $date, string $email, string $hash)
     {
+        $this->id = $id;
+        $this->date = $date;
         $this->email = $email;
         $this->passwordHash = $hash;
     }
@@ -32,5 +49,15 @@ class User
     public function getPasswordHash(): string
     {
         return $this->passwordHash;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+    
+    public function getDate(): \DateTimeImmutable
+    {
+        return $this->date;
     }
 }
