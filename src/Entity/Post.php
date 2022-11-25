@@ -49,7 +49,4 @@ class Post
         return $this;
     }
 
-    public function nameFunction()
-    {
-    }
 }
