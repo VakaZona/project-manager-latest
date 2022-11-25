@@ -13,7 +13,7 @@ class RequestTest extends TestCase{
             $hash = 'hash'
         );
 
-        self::assertEquals($email, $user->getEmail())
-        self::assertEquals($hash, $user->getPasswordHash())
+        self::assertEquals($email, $user->getEmail());
+        self::assertEquals($hash, $user->getPasswordHash());
     }
 }
