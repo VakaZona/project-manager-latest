@@ -6,6 +6,8 @@ use App\Model\User\Entity\User\Email;
 
 class User
 {
+    private const STATUS_WAIT = 'wait';
+    private const STATUS_ACTIVE = 'active';
     /**
      * id
      *
@@ -33,14 +35,38 @@ class User
      *
      * @var string
      */
-    private $passwordHash;
+    private $passwordHash;    
+    /**
+     * confirmToken
+     *
+     * @var string|null
+     */
+    private $confirmToken;    
+    /**
+     * status
+     *
+     * @var string
+     */
+    private $status;
 
-    public function __construct(Id $id, \DateTimeImmutable $date, Email $email, string $hash)
+    public function __construct(Id $id, \DateTimeImmutable $date, Email $email, string $hash, string $token)
     {
         $this->id = $id;
         $this->date = $date;
         $this->email = $email;
         $this->passwordHash = $hash;
+        $this->confirmToken = $token;
+        $this->status = self::STATUS_WAIT;
+    }
+
+    public function isWait(): bool
+    {
+        return $this->status === self::STATUS_WAIT;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === self::STATUS_ACTIVE;
     }
 
     public function getEmail(): Email
@@ -61,5 +87,10 @@ class User
     public function getDate(): \DateTimeImmutable
     {
         return $this->date;
+    }
+
+    public function getConfirmToken(): string
+    {
+        return $this->confirmToken;
     }
 }
