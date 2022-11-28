@@ -6,7 +6,7 @@ class Command
 {
 
     /**
-     * email
+     * token
      *
      * @var string
      */

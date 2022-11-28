@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\User\UseCase\SignUp\Request;
+namespace App\Model\User\UseCase\SignUp\Confirm;
 
 Use App\Model\Flusher;
 Use App\Model\User\Entity\User\UserRepository;
@@ -23,7 +23,7 @@ class Hadler
             throw new \DomainException('Uncorrect or confirmed token.');
         }
 
-        $user->confirmSingUp();
+        $user->confirmSignUp();
 
         $this->flusher->flush();
     }

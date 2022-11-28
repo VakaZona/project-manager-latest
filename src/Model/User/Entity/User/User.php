@@ -89,11 +89,11 @@ class User
         return $this->date;
     }
 
-    public function getConfirmToken(): string
+    public function getConfirmToken(): ?string
     {
         return $this->confirmToken;
     }
-    
+
     public function confirmSignUp(): void
     {
         if (!$this->isWait()) {
