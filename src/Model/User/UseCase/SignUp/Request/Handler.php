@@ -7,9 +7,9 @@ Use App\Model\User\Entity\User\Id;
 Use App\Model\User\Entity\User\Email;
 Use App\Model\User\Entity\User\User;
 Use App\Model\User\Entity\User\UserRepository;
-use App\Model\User\Service\ConfirmTokenizer;
 use App\Model\User\Service\ConfirmTokenSender;
 Use App\Model\User\Service\PasswordHasher;
+use App\Model\User\Service\SignUpConfirmTokenizer;
 
 class Hadler
 {
