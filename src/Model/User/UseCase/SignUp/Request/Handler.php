@@ -19,7 +19,7 @@ class Hadler
     private $sender;
     private $flusher;
 
-    public function __construct(UserRepository $users, PasswordHasher $hasher,ConfirmTokenizer $tokenizer, ConfirmTokenSender $sender, Flusher $flusher)
+    public function __construct(UserRepository $users, PasswordHasher $hasher,SignUpConfirmTokenizer $tokenizer, ConfirmTokenSender $sender, Flusher $flusher)
     {
         $this->users = $users;
         $this->hasher = $hasher;
