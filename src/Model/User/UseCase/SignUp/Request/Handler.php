@@ -2,20 +2,44 @@
 
 namespace App\Model\User\UseCase\SignUp\Request;
 
-use App\Model\User\Entity\User\User;
-use Doctrine\ORM\EntityManagerInterface;
-use Ramsey\Uuid\Uuid;
+Use App\Model\Flusher;
+Use App\Model\User\Entity\User\Id;
+Use App\Model\User\Entity\User\Email;
+Use App\Model\User\Entity\User\User;
+Use App\Model\User\Entity\User\UserRepository;
+Use App\Model\User\Service\PasswordHasher;
 
 class Hadler
 {
-    public function __construct()
+    private $users;
+    private $hasher;
+    private $flusher;
+
+    public function __construct(UserRepository $users, PasswordHasher $hasher, Flusher $flusher)
     {
-        
+        $this->users = $users;
+        $this->hasher = $hasher;
+        $this->flusher = $flusher;
     }
 
     public function handle(Command $command): void
     {
+        $email = new Email($command->email);
 
+        if($this->users->hasByEmail($email)){
+            throw new \DomainException('User already exists.')
+        }
+
+        $user = new User(
+            Id::next(),
+            new \DateTimeImmutable(),
+            $email,
+            $$this->hasher->hash($command->password)
+        );
+
+        $this->users->add($user);
+
+        $this->flusher->flush();
     }
 }
 
