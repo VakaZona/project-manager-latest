@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\User\UseCase\SignUp\Request;
+namespace App\Model\User\UseCase\SignUp\Confirm;
 
 class Command
 {
@@ -10,12 +10,6 @@ class Command
      *
      * @var string
      */
-    public $email;
+    public $token;
 
-    /**
-     * password
-     *
-     * @var string
-     */
-    public $password;
 }
