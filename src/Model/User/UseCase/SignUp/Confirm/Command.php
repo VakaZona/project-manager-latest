@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\User\UseCase\SignUp\Request;
+namespace App\Model\User\UseCase\SignUp\Confirm;
 
 class Command
 {
