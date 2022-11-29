@@ -2,18 +2,14 @@
 
 namespace App\Tests\Unit\Model\User\Entity\User\SingUp;
 
-use App\Model\User\Entity\User\User;
-use App\Model\User\Entity\User\Email;
-use App\Model\User\Entity\User\Id;
 use PHPUnit\Framework\TestCase;
+use App\Model\User\Entity\User\Email;
+use App\Tests\Builder\User\UserBuilder;
 
 class RequestTest extends TestCase{
     public function testSuccess(): void
     {
-        $user = new User(
-            $id = Id::next(),
-            $date = new \DateTimeImmutable()
-        );
+        $user = (new UserBuilder())->build();
 
         $user->signUpByEmail(
             $email = new Email('test@app.test'),
@@ -24,19 +20,15 @@ class RequestTest extends TestCase{
         self::assertTrue($user->isWait());
         self::assertFalse($user->isActive());
 
-        self::assertEquals($id, $user->getId());
         self::assertEquals($email, $user->getEmail());
         self::assertEquals($hash, $user->getPasswordHash());
-        self::assertEquals($date, $user->getDate());
+
         self::assertEquals($token, $user->getConfirmToken());
     }
 
     public function testAlready(): void
     {
-        $user = new User(
-            $id = Id::next(),
-            $date = new \DateTimeImmutable()
-        );
+        $user = (new UserBuilder())->build();
 
         $user->signUpByEmail(
             $email = new Email('test@app.test'),

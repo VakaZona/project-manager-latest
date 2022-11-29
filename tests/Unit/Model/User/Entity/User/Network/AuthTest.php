@@ -2,19 +2,16 @@
 
 namespace App\Tests\Unit\Model\User\Entity\User\Network;
 
-use App\Model\User\Entity\User\Id;
-use App\Model\User\Entity\User\Network;
-use App\Model\User\Entity\User\User;
 use PHPUnit\Framework\TestCase;
+use App\Model\User\Entity\User\Network;
+use App\Tests\Builder\User\UserBuilder;
 
 class AuthTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $user = new User(
-            Id::next(),
-            new \DateTimeImmutable()
-        );
+        $user = (new UserBuilder())->build();
+        
 
         $user->signUpByNetwork(
             $network = 'vk',
@@ -31,10 +28,7 @@ class AuthTest extends TestCase
 
     public function testAlready(): void
     {
-        $user = new User(
-            $id = Id::next(),
-            $date = new \DateTimeImmutable()
-        );
+        $user = (new UserBuilder())->build();
 
         $user->signUpByNetwork(
             $network = 'vk',
