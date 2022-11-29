@@ -33,6 +33,13 @@ class UserBuilder
         return $clone;
     }
 
+    public function confirmed(): self
+    {
+        $clone = clone $this;
+        $clone->confirmed = true;
+        return $clone;
+    }
+
     public function viaNetwork(string $network = null, string $identity = null): self
     {
         $clone = clone $this;
